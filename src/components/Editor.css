@@ -1,0 +1,32 @@
+/* .editor-container-left{
+    height:600px;
+    border: 2px solid #bdbdbd;
+    border-radius: 8px;
+}
+.editor-container-right{
+    height:600px;
+    /* width:200px */
+
+
+
+.editor-container-left {
+    height: 600px;
+    border: 2px solid #bdbdbd;
+    border-radius: 8px;
+    overflow: auto; /* Allow scrolling if content overflows */
+
+}
+
+.editor-container-right {
+    min-height: 600px;
+    border: 2px solid #bdbdbd; /* Add border for consistency */
+    border-radius: 8px;
+    /* overflow: auto;  */
+    overflow-wrap: break-word; /* For modern browsers */
+    padding: 40px; /* Add some padding for aesthetics */
+}
+
+/* Optional: Adjust width for better layout */
+.editor-container-left, .editor-container-right {
+    width: 100%; /* Full width for responsive design */
+}
