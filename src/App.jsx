@@ -1,9 +1,11 @@
-import Navbar from "./components/Navbar";
+// import Navbar from "./components/Navbar";
+import PromptSection from "./components/PromptSection";
 
 function App() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
+      <PromptSection/>
     </>
   );
 }

@@ -1,0 +1,33 @@
+.prompt {
+  height: 200px;
+  width: 900px;
+  border-color: #bdbdbd;
+  padding: 10px;
+  margin: 0;
+  box-sizing: border-box;
+  text-align: left;
+  line-height: 1.2;
+  border-radius: 10px;
+}
+
+.prompt::placeholder {
+  color: #bdbdbd;
+}
+.prompt:focus {
+  outline: none; 
+  border-color: #2383e2; 
+}
+.generate-btn {
+    background: linear-gradient(to bottom, #2980b9, #3498db);
+    border-radius: 8px;
+    font-family: Georgia, serif;
+    color: #ffffff;
+    font-size: 26px;
+    padding: 10px 26px;
+    text-decoration: none;
+    border: none;
+  }
+  
+  .generate-btn:hover {
+    background: #3498db;
+  }
