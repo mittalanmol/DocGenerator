@@ -3,16 +3,14 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import "./Editor.css";
 
-const Editor = () => {
-  const [editorData, setEditorData] = useState(
-    "Artificial Intelligence (AI) refers to the simulation of human intelligence in machines that are programmed to think and learn like humans. This technology encompasses a wide range of capabilities, including problem-solving, speech recognition, decision-making, and language translation. AI's importance in modern technology cannot be overstated; it enhances automation, improves efficiency, and drives innovation across various sectors."
-  );
+const Editor = ({ message }) => {
+  const [editorData, setEditorData] = useState(message);
   return (
     <div>
-      <div className="container">
-        <div className="row p-4 ">
-          <div className="col-md-6 col-12">
-            <div className="editor-container-left">
+      <div className='container'>
+        <div className='row p-4 '>
+          <div className='col-md-6 col-12'>
+            <div className='editor-container-left'>
               <CKEditor
                 editor={ClassicEditor}
                 data={editorData}
@@ -23,8 +21,8 @@ const Editor = () => {
               />
             </div>
           </div>
-          <div className="col-md-6 col-12">
-            <div className="editor-container-right shadow">
+          <div className='col-md-6 col-12'>
+            <div className='editor-container-right shadow'>
               <div dangerouslySetInnerHTML={{ __html: editorData }} />
             </div>
           </div>
