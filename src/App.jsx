@@ -1,14 +1,14 @@
-import Navbar from "./components/Navbar";
-// import PromptSection from "./components/PromptSection";
+// import Navbar from "./components/Navbar";
+import PromptSection from "./components/PromptSection";
 
-import Editor from "./components/Editor";
+// import Editor from "./components/Editor";
 
 function App() {
   return (
     <>
-      <Navbar />
-      {/* <PromptSection/> */}
-      <Editor/>
+      {/* <Navbar /> */}
+      <PromptSection/>
+      {/* <Editor/> */}
     </>
   );
 }
