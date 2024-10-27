@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "./PromptSection.css";
+import "./Loader.css";
 
 const PromptSection = ({ setMessage }) => {
   const [inputText, setInputText] = useState("");
@@ -37,16 +38,30 @@ const PromptSection = ({ setMessage }) => {
   };
 
   return (
-    <div className='d-flex justify-content-center align-items-center vh-100 flex-column'>
-      <textarea
-        className='prompt'
-        placeholder='Enter the instructions...'
-        onChange={handleChange}
-      />
-      <button className='generate-btn mt-4' onClick={handleSubmit}>
-        Generate
-      </button>
-      {loading && <div className='loader'>Loading...</div>}{" "}
+    <div className='d-flex justify-content-center align-items-center flex-column content'>
+      {loading ? (
+        <div className='lds-roller'>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      ) : (
+        <>
+          <textarea
+            className='prompt'
+            placeholder='Enter the instructions...'
+            onChange={handleChange}
+          />
+          <button className='generate-btn mt-4' onClick={handleSubmit}>
+            Generate
+          </button>
+        </>
+      )}
     </div>
   );
 };

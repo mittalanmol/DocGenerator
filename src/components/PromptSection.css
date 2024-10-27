@@ -14,20 +14,25 @@
   color: #bdbdbd;
 }
 .prompt:focus {
-  outline: none; 
-  border-color: #2383e2; 
+  outline: none;
+  border-color: #2383e2;
 }
+
+.content {
+  height: calc(100vh - 77px); /* Adjust 60px to match your navbar height */
+}
+
 .generate-btn {
-    background: linear-gradient(to bottom, #2980b9, #3498db);
-    border-radius: 8px;
-    font-family: Georgia, serif;
-    color: #ffffff;
-    font-size: 26px;
-    padding: 10px 26px;
-    text-decoration: none;
-    border: none;
-  }
-  
-  .generate-btn:hover {
-    background: #3498db;
-  }
+  background: linear-gradient(to bottom, #2980b9, #3498db);
+  border-radius: 8px;
+  font-family: Georgia, serif;
+  color: #ffffff;
+  font-size: 26px;
+  padding: 10px 26px;
+  text-decoration: none;
+  border: none;
+}
+
+.generate-btn:hover {
+  background: #3498db;
+}
