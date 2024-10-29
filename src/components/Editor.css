@@ -7,26 +7,55 @@
     height:600px;
     /* width:200px */
 
-
-
 .editor-container-left {
-    height: 600px;
-    border: 2px solid #bdbdbd;
-    border-radius: 8px;
-    overflow: auto; /* Allow scrolling if content overflows */
-
+  height: 600px;
+  border: 2px solid #bdbdbd;
+  /* border-radius: 8px; */
+  overflow: auto; /* Allow scrolling if content overflows */
 }
 
 .editor-container-right {
-    min-height: 600px;
-    border: 2px solid #bdbdbd; /* Add border for consistency */
-    border-radius: 8px;
-    /* overflow: auto;  */
-    overflow-wrap: break-word; /* For modern browsers */
-    padding: 40px; /* Add some padding for aesthetics */
+  min-height: 600px;
+  border: #bdbdbd; /*Add border for consistency*/
+  /* border-radius: 8px;/ */
+  /* box-shadow: black; */
+  box-shadow: 0 0 5px #bdbdbd; /* Shadow effect */
+
+  /* overflow: auto;  */
+  overflow-wrap: break-word; /* For modern browsers */
+  padding: 40px; /* Add some padding for aesthetics */
 }
 
 /* Optional: Adjust width for better layout */
-.editor-container-left, .editor-container-right {
-    width: 100%; /* Full width for responsive design */
+.editor-container-left,
+.editor-container-right {
+  width: 100%; /* Full width for responsive design */
+}
+
+/* CSS to disable interaction in target-content */
+#target-content {
+  pointer-events: none; /* Disables all user interaction */
+  user-select: none; /* Disables text selection */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+table {
+  page-break-inside: avoid;
+}
+
+/* Create more natural page breaks */
+.editor-container-right {
+  margin-bottom: 20px;
+}
+
+.editor-container-right * {
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
