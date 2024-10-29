@@ -18,11 +18,12 @@ import {
 } from "ckeditor5";
 
 import "ckeditor5/ckeditor5.css";
+// eslint-disable-next-line react/prop-types
 const Editor = ({ message }) => {
   const editorRef = useRef(null);
 
   const [editorData, setEditorData] = useState(message);
-  const [data, setData] = useState("");
+  // const [data, setData] = useState("");
 
   useEffect(() => {
     const targetElement = document.getElementById("target-content");
@@ -69,7 +70,7 @@ const Editor = ({ message }) => {
 
   return (
     <div>
-      <div className='container'>
+      <div className='container mt-5'>
         <div className='row p-4 '>
           <div className='col-md-6 col-12'>
             <div className='editor-container-left'>
