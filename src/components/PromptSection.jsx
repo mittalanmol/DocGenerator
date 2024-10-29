@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "./PromptSection.css";
 import "./Loader.css";
 
+// eslint-disable-next-line react/prop-types
 const PromptSection = ({ setMessage }) => {
   const [inputText, setInputText] = useState("");
   const [loading, setLoading] = useState(false);
@@ -34,6 +35,9 @@ const PromptSection = ({ setMessage }) => {
   };
 
   const handleSubmit = () => {
+     if(!inputText){
+      return
+    }
     sendingData();
   };
 
