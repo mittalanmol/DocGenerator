@@ -35,7 +35,7 @@
 /* CSS to disable interaction in target-content */
 #target-content {
   pointer-events: none; /* Disables all user interaction */
-  user-select: none; /* Disables text selection */
+  user-select: none; /*Disables text selection*/
 }
 
 h1,
@@ -52,10 +52,50 @@ table {
 
 /* Create more natural page breaks */
 .editor-container-right {
-  margin-bottom: 20px;
+  margin: none;
 }
 
 .editor-container-right * {
   break-inside: avoid;
   page-break-inside: avoid;
+}
+
+.export-btn {
+  background: linear-gradient(to bottom, #2980b9, #3498db);
+  border-radius: 4px;
+  /* font-family: Georgia, serif; */
+  color: #ffffff;
+  font-size: 15px;
+  padding: 5px 15px;
+  text-decoration: none;
+  border: none;
+}
+
+/* .break-before {
+  break-before: always;
+}
+.break-after {
+  break-after: always;
+} */
+
+.ck.ck-editor__editable.ck-focused:not(.ck-editor__nested-editable) {
+  outline: none;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.ck-widget.table
+  td.ck-editor__nested-editable.ck-editor__nested-editable_focused,
+.ck-widget.table
+  th.ck-editor__nested-editable.ck-editor__nested-editable_focused,
+.ck-widget.table td.ck-editor__nested-editable:focus,
+.ck-widget.table th.ck-editor__nested-editable:focus {
+  background: none !important;
+  outline: none !important;
+  outline-offset: none !important;
+}
+
+ck .ck-editor__nested-editable.ck-editor__nested-editable_focused,
+.ck .ck-editor__nested-editable:focus {
+  box-shadow: none !important;
 }

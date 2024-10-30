@@ -35,8 +35,8 @@ const PromptSection = ({ setMessage }) => {
   };
 
   const handleSubmit = () => {
-     if(!inputText){
-      return
+    if (!inputText) {
+      return;
     }
     sendingData();
   };

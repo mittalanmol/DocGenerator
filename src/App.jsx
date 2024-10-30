@@ -12,10 +12,13 @@ function App() {
   return (
     <>
       {/* <Navbar /> */}
-     <Sidebar/>
+      <Sidebar />
       <Routes>
-        <Route path="/" element ={<Dashboard/>} />
-        <Route path='/home' element={<PromptSection setMessage={setMessage} />} />
+        <Route path='/' element={<Dashboard />} />
+        <Route
+          path='/home'
+          element={<PromptSection setMessage={setMessage} />}
+        />
         <Route path='/editor' element={<Editor message={message} />} />
       </Routes>
     </>

@@ -4,40 +4,66 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import html2pdf from "html2pdf.js";
 import {
   ClassicEditor,
-  Essentials,
-  Autoformat,
-  BlockQuote,
   Bold,
-  CloudServices,
-  Code,
-  CodeBlock,
-  Heading,
-  HorizontalLine,
-  // Image,
-  ImageToolbar,
-  ImageUpload,
-  Base64UploadAdapter,
+  Essentials,
   Italic,
-  Link,
-  List,
-  Markdown,
   Mention,
   Paragraph,
+  Undo,
   SourceEditing,
-  SpecialCharacters,
-  SpecialCharactersEssentials,
-  Strikethrough,
+  Markdown,
+  Autoformat,
+  Heading,
+  HeadingEditing,
   Table,
-  TableToolbar,
-  TextTransformation,
-  TodoList,
+  Link, // To make Link
+  List, // Bullet and numbered lists
+  Code,
+  CodeBlock,
 } from "ckeditor5";
 import "ckeditor5/ckeditor5.css";
 // eslint-disable-next-line react/prop-types
 const Editor = ({ message }) => {
   const editorRef = useRef(null);
-  const [editorData, setEditorData] = useState(message);
+  const [editorData, setEditorData] = useState(message || "");
   // const [data, setData] = useState("");
+
+  // Function to export target-content as a multi-page PDF
+  const exportAsPDF = () => {
+    const targetContent = document.getElementById("target-content");
+
+    if (targetContent) {
+      // Clone the content and remove CKEditor-specific classes
+      const clonedContent = targetContent.cloneNode(true);
+      clonedContent.classList.remove("ck", "ck-editor__editable", "ck-focused");
+
+      const options = {
+        margin: [0.4, 0, 0.4, 0], // top, left, bottom, right
+        filename: "content.pdf",
+        image: { type: "jpeg", quality: 1 },
+        html2canvas: { scale: 3 },
+        jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
+        // pagebreak: { mode: ["css", "legacy"] }, // Support for CSS page breaks
+        pagebreak: {
+          mode: ["avoid-all", "css", "legacy"], // Adjust for more precise breaks
+          // before: ".break-before", // Optional: Add class on elements where you want to enforce a break before
+          // after: ".break-after", // Optional: Add class on elements where you want to enforce a break after
+        },
+      };
+
+      // Temporarily add the cloned content to the DOM for PDF generation
+      document.body.appendChild(clonedContent);
+
+      html2pdf()
+        .set(options)
+        .from(targetContent)
+        .save()
+        .then(() => {
+          // Remove the cloned content after generating the PDF
+          document.body.removeChild(clonedContent);
+        });
+    }
+  };
 
   useEffect(() => {
     const targetElement = document.getElementById("target-content");
@@ -77,15 +103,23 @@ const Editor = ({ message }) => {
     <div>
       <div className='container mt-5'>
         <div className='row p-4 '>
+          <div className='col-md-12 mb-2'>
+            <div className='text-end '>
+              <button onClick={exportAsPDF} className='export-btn'>
+                Export to Pdf
+              </button>
+            </div>
+          </div>
           <div className='col-md-6 col-12'>
             <div className='editor-container-left'>
               <CKEditor
                 ref={editorRef}
                 editor={ClassicEditor}
-                data={editorData}
+                data={message || editorData}
                 onChange={(event, editor) => {
                   const data = editor.getData();
-                  setEditorData(data);
+                  // Only update if data is different
+                  if (data !== editorData) setEditorData(data);
                 }}
                 config={{
                   allowedContent: true,
@@ -100,46 +134,34 @@ const Editor = ({ message }) => {
                       "SourceEditing",
                       "Heading",
                       "|",
-                      "bulletedList",
-                      "numberedList",
+                      "bulletedList", // For bullet points
+                      "numberedList", // For ordered points
                     ],
                   },
                   plugins: [
-                    ClassicEditor,
-                    Essentials,
-                    Autoformat,
-                    BlockQuote,
                     Bold,
-                    CloudServices,
-                    Code,
-                    CodeBlock,
-                    Heading,
-                    HorizontalLine,
-
-                    ImageToolbar,
-                    ImageUpload,
-                    Base64UploadAdapter,
+                    Essentials,
                     Italic,
-                    Link,
-                    List,
-                    Markdown,
                     Mention,
                     Paragraph,
-                    SourceEditing,
-                    SpecialCharacters,
-                    SpecialCharactersEssentials,
-                    Strikethrough,
+                    Markdown,
                     Table,
-                    TableToolbar,
-                    TextTransformation,
-                    TodoList,
+                    Undo,
+                    SourceEditing,
+                    Autoformat,
+                    Heading,
+                    HeadingEditing,
+                    Link,
+                    List,
+                    Code,
+                    CodeBlock,
                   ],
                   initialData: editorData,
                 }}
               />
             </div>
           </div>
-          <div className='col-md-6 col-12'>
+          <div className='col-md-6 col-12 '>
             <div className='editor-container-right  ' id='target-content'>
               {/* Content will update here */}
             </div>
