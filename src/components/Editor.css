@@ -70,6 +70,16 @@ table {
   text-decoration: none;
   border: none;
 }
+.export-btn-disabled {
+  background: linear-gradient(to bottom, #7e7f80, #b5b7b8);
+  border-radius: 4px;
+  /* font-family: Georgia, serif; */
+  color: #ffffff;
+  font-size: 15px;
+  padding: 5px 15px;
+  text-decoration: none;
+  border: none;
+}
 
 /* .break-before {
   break-before: always;

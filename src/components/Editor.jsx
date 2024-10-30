@@ -26,6 +26,7 @@ import "ckeditor5/ckeditor5.css";
 const Editor = ({ message }) => {
   const editorRef = useRef(null);
   const [editorData, setEditorData] = useState(message || "");
+  const [isButtonDisabled,setIsButtonDisabled] = useState("true");
   // const [data, setData] = useState("");
 
   // Function to export target-content as a multi-page PDF
@@ -33,6 +34,7 @@ const Editor = ({ message }) => {
     const targetContent = document.getElementById("target-content");
 
     if (targetContent) {
+      setIsButtonDisabled(false);
       // Clone the content and remove CKEditor-specific classes
       const clonedContent = targetContent.cloneNode(true);
       clonedContent.classList.remove("ck", "ck-editor__editable", "ck-focused");
@@ -73,6 +75,7 @@ const Editor = ({ message }) => {
         document.getElementsByClassName("ck ck-editor__main")[0];
       if (sourceElement && targetElement) {
         targetElement.innerHTML = sourceElement.innerHTML;
+        setIsButtonDisabled(targetElement.textContent.trim() === "");
       }
     };
 
@@ -105,9 +108,12 @@ const Editor = ({ message }) => {
         <div className='row p-4 '>
           <div className='col-md-12 mb-2'>
             <div className='text-end '>
-              <button onClick={exportAsPDF} className='export-btn'>
+              {!isButtonDisabled?   <button onClick={exportAsPDF} className='export-btn'>
                 Export to Pdf
-              </button>
+              </button>: <button onClick={exportAsPDF} className='export-btn-disabled' disabled>
+                Export to Pdf
+              </button>}
+            
             </div>
           </div>
           <div className='col-md-6 col-12'>
