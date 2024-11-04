@@ -25,9 +25,11 @@ import "ckeditor5/ckeditor5.css";
 // eslint-disable-next-line react/prop-types
 const Editor = ({ message }) => {
   const editorRef = useRef(null);
-  const [editorData, setEditorData] = useState(message || "");
-  const [isButtonDisabled,setIsButtonDisabled] = useState("true");
-  // const [data, setData] = useState("");
+  // Initialize with `message` if provided, or with `localStorage` if no message, otherwise empty string
+  const [editorData, setEditorData] = useState(
+    message || localStorage.getItem("editorData") || ""
+  );
+  const [isButtonDisabled, setIsButtonDisabled] = useState("true");
 
   // Function to export target-content as a multi-page PDF
   const exportAsPDF = () => {
@@ -43,12 +45,12 @@ const Editor = ({ message }) => {
         margin: [0.4, 0, 0.4, 0], // top, left, bottom, right
         filename: "content.pdf",
         image: { type: "jpeg", quality: 1 },
-        html2canvas: { scale: 3 },
+        html2canvas: { scale: 2.2 },
         jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
         // pagebreak: { mode: ["css", "legacy"] }, // Support for CSS page breaks
         pagebreak: {
           mode: ["avoid-all", "css", "legacy"], // Adjust for more precise breaks
-          // before: ".break-before", // Optional: Add class on elements where you want to enforce a break before
+          //before: ".break-before", // Optional: Add class on elements where you want to enforce a break before
           // after: ".break-after", // Optional: Add class on elements where you want to enforce a break after
         },
       };
@@ -102,18 +104,39 @@ const Editor = ({ message }) => {
     };
   }, [editorData]);
 
+  // Update localStorage only when "message" is received or changed and "editorData" changes
+  useEffect(() => {
+    if (message) {
+      setEditorData(message);
+      localStorage.setItem("editorData", message);
+    }
+  }, [message]);
+
+  useEffect(() => {
+    if (editorData) {
+      localStorage.setItem("editorData", editorData);
+    }
+  }, [editorData]);
+
   return (
     <div>
       <div className='container mt-5'>
         <div className='row p-4 '>
           <div className='col-md-12 mb-2'>
             <div className='text-end '>
-              {!isButtonDisabled?   <button onClick={exportAsPDF} className='export-btn'>
-                Export to Pdf
-              </button>: <button onClick={exportAsPDF} className='export-btn-disabled' disabled>
-                Export to Pdf
-              </button>}
-            
+              {!isButtonDisabled ? (
+                <button onClick={exportAsPDF} className='export-btn'>
+                  Export to Pdf
+                </button>
+              ) : (
+                <button
+                  onClick={exportAsPDF}
+                  className='export-btn-disabled'
+                  disabled
+                >
+                  Export to Pdf
+                </button>
+              )}
             </div>
           </div>
           <div className='col-md-6 col-12'>

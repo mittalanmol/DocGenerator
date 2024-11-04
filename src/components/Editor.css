@@ -88,6 +88,13 @@ table {
   break-after: always;
 } */
 
+/* .break-before {
+  page-break-before: always;
+}
+.break-after {
+  page-break-after: always;
+} */
+
 .ck.ck-editor__editable.ck-focused:not(.ck-editor__nested-editable) {
   outline: none;
   border: none !important;
