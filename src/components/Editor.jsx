@@ -140,6 +140,7 @@ const Editor = ({ message }) => {
             </div>
           </div>
           <div className='col-md-6 col-12'>
+          <h3 className="heading" >Editor</h3>
             <div className='editor-container-left'>
               <CKEditor
                 ref={editorRef}
@@ -191,6 +192,7 @@ const Editor = ({ message }) => {
             </div>
           </div>
           <div className='col-md-6 col-12 '>
+            <h3 className="heading">Preview</h3>
             <div className='editor-container-right  ' id='target-content'>
               {/* Content will update here */}
             </div>

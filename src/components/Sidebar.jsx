@@ -7,7 +7,7 @@ const Sidebar = () => {
   return (
     <div className="nav-bar">
       <Link className="logo" to="/">
-        <img src="doc.png" className="sub-logo" alt="logo-img" />
+        <img src="Logo.png" className="sub-logo" alt="logo-img"  style={{height:"27px",width:"76px"}}/>
       </Link>
       <nav>
         <NavLink exact="true" activeclassname="active" to="/home" className="nav-item">

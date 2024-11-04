@@ -116,3 +116,10 @@ ck .ck-editor__nested-editable.ck-editor__nested-editable_focused,
 .ck .ck-editor__nested-editable:focus {
   box-shadow: none !important;
 }
+.heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 10px 0 5px 15px;
+  /* border-left: 5px solid #3498db; */
+  color: #333;
+}
