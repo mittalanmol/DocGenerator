@@ -34,30 +34,37 @@ Add-on Features: Crypto-to-crypto swapping, Automated Market Making (AMM), crypt
   };
 
   return (
-    <div className="container  d-flex justify-content-evenly align-items-center vh-100 flex-column " style={{marginTop:"100px"}}>
-      <h4 className="heading">Sample 1</h4>
-      <div className="content-card">
-        <div className="mb-2"><button
-          onClick={() => handleCopy(content1, 1)}
-          className="copy-btn"
-          aria-label="Copy content 1"
-        >
-          {copied[1] ? "Copied!" : "Copy"}
-        </button></div>
-        
-        <div className="content-text">{content1}</div>
+    <div
+      className='container  d-flex justify-content-evenly align-items-center vh-100 flex-column '
+      style={{ marginTop: "100px", marginBottom: "50px" }}
+    >
+      <h4 className='heading'>Sample 1</h4>
+      <div className='content-card'>
+        <div className='mb-2'>
+          <button
+            onClick={() => handleCopy(content1, 1)}
+            className='copy-btn'
+            aria-label='Copy content 1'
+          >
+            {copied[1] ? "Copied!" : "Copy"}
+          </button>
+        </div>
+
+        <div className='content-text'>{content1}</div>
       </div>
-      <h4 className="heading">Sample 2</h4>
-      <div className="content-card">
-        <div className="mb-2"><button
-          onClick={() => handleCopy(content2, 2)}
-          className="copy-btn"
-          aria-label="Copy content 2"
-        >
-          {copied[2] ? "Copied!" : "Copy"}
-        </button></div>
-        
-        <div className="content-text">{content2}</div>
+      <h4 className='heading'>Sample 2</h4>
+      <div className='content-card'>
+        <div className='mb-2'>
+          <button
+            onClick={() => handleCopy(content2, 2)}
+            className='copy-btn'
+            aria-label='Copy content 2'
+          >
+            {copied[2] ? "Copied!" : "Copy"}
+          </button>
+        </div>
+
+        <div className='content-text'>{content2}</div>
       </div>
     </div>
   );
