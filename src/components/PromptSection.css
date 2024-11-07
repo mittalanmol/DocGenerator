@@ -36,3 +36,17 @@
 .generate-btn:hover {
   background: #3498db;
 }
+
+.sample-prompts{
+  margin:auto
+}
+.upward-icon{
+position: absolute;
+top: -6px;
+right: 0px;
+cursor: pointer;
+
+}
+.iconsss {
+  position: relative; /* Ensure icon is positioned relative to Accordion.Body */
+}

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Dashboard = () => {
   return (
     <div>
-      <div className="container d-flex justify-content-evenly align-items-center vh-100">
+      <div className="container d-flex justify-content-center align-items-center vh-100">
         <div
           className="card shadow-sm text-center"
           style={{ minHeight: "250px", width: "270px", borderRadius: "12px" }}
@@ -20,7 +20,7 @@ const Dashboard = () => {
             </Link>
           </div>
         </div>
-        <div
+        {/* <div
           className="card shadow-sm text-center"
           style={{ minHeight: "250px", width: "270px", borderRadius: "12px" }}
         >
@@ -33,7 +33,7 @@ const Dashboard = () => {
               </button>
             </Link>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
