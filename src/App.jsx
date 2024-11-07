@@ -17,11 +17,11 @@ function App() {
       <Routes>
         <Route path='/' element={<Dashboard />} />
         <Route
-          path='/home'
+          path='/proposalmaker'
           element={<PromptSection setMessage={setMessage} />}
         />
         <Route path='/editor' element={<Editor message={message} />} />
-        <Route path='/prompts' element={<SamplePrompts/>}/>
+        <Route path='/prompts' element={<SamplePrompts />} />
       </Routes>
     </>
   );
