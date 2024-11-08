@@ -23,6 +23,7 @@ import {
   CodeBlock,
 } from "ckeditor5";
 import "ckeditor5/ckeditor5.css";
+import axios from "axios";
 
 import useDrivePicker from "react-google-drive-picker";
 
@@ -73,9 +74,50 @@ const Editor = ({ message }) => {
   //   }
   // };
 
-  const sendingData = () => {
-    console.log(editorData);
+
+
+  const sendingData = async () => {
+    try {
+      const response = await axios.post("http://192.168.10.53:8000/api/v1/exportPdf", 
+        {
+          markdown: editorData,
+        },
+        {
+          responseType: 'blob',  // Important: Specify response type as 'blob'
+        }
+      );
+  
+      // Convert the Blob to a URL
+      const pdfBlob = new Blob([response.data], { type: 'application/pdf' });
+      const pdfUrl = URL.createObjectURL(pdfBlob);
+  
+      // Create a link element to download the PDF
+      const link = document.createElement('a');
+      link.href = pdfUrl;
+  
+      // Optionally, extract the filename from the headers
+      const contentDisposition = response.headers['content-Type'];
+      console.log("filename",contentDisposition)
+      const filename = contentDisposition 
+        ? contentDisposition.split('filename=')[1].replace(/"/g, '') 
+        : 'downloaded_file.pdf';
+  
+      link.download = filename;  // Set the download filename
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+  
+      // Clean up the URL object after download
+      URL.revokeObjectURL(pdfUrl);
+  
+      console.log("PDF downloaded successfully");
+    } catch (error) {
+      console.error("Error downloading PDF:", error);
+    }
   };
+  
+
+
 
   const SCOPES = "https://www.googleapis.com/auth/drive.file";
 
