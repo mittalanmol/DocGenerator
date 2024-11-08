@@ -42,7 +42,7 @@ Add-on Features: Crypto-to-crypto swapping, Automated Market Making (AMM), crypt
       // Clean up the extra escape slashes for newline characters
       const cleanedPrompt = inputText.replace(/\\n/g, "\n");
       const response = await axios.post(
-        "http://192.168.10.53:8000/api/v1/generateSowMd",
+        "http://192.168.10.53:8000/api/v1/generate",
         {
           prompt: cleanedPrompt,
         }
