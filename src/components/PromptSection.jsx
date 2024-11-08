@@ -22,13 +22,11 @@ Robust access control for administrators and sub-admins, ensuring multi-tiered m
 Dex launchpad:
 Project launch, investors' investment in projects, project token to work on bonded curve`;
 
-  const content2 = `
-Basic Exchange Features: User registration, deposits/withdrawals, trading pairs, and order management.
-Add-on Features: Crypto-to-crypto swapping, Automated Market Making (AMM), crypto loans, IEO launchpad, P2P trading, airdrop tools, and more.`;
+  const content2 = "";
 
   const handleOnClick = (data) => {
-     // Toggle the inputText: if it's already set to `data`, clear it; otherwise, set it
-     if (inputText === data) {
+    // Toggle the inputText: if it's already set to `data`, clear it; otherwise, set it
+    if (inputText === data) {
       setInputText("");
       setIconColor("black"); // Reset icon color to black if cleared
     } else {
@@ -42,7 +40,7 @@ Add-on Features: Crypto-to-crypto swapping, Automated Market Making (AMM), crypt
       // Clean up the extra escape slashes for newline characters
       const cleanedPrompt = inputText.replace(/\\n/g, "\n");
       const response = await axios.post(
-        "http://192.168.10.53:8000/api/v1/generateSowMd",
+        "http://192.168.10.53:8000/api/v1/generate",
         {
           prompt: cleanedPrompt,
         }
@@ -72,11 +70,11 @@ Add-on Features: Crypto-to-crypto swapping, Automated Market Making (AMM), crypt
   return (
     <>
       <div
-        className="d-flex justify-content-center align-items-center flex-column content"
+        className='d-flex justify-content-center align-items-center flex-column content'
         style={{ marginTop: "100px" }}
       >
         {loading ? (
-          <div className="lds-roller">
+          <div className='lds-roller'>
             <div></div>
             <div></div>
             <div></div>
@@ -89,44 +87,46 @@ Add-on Features: Crypto-to-crypto swapping, Automated Market Making (AMM), crypt
         ) : (
           <>
             <textarea
-              className="prompt"
-              placeholder="Enter the instructions..."
+              className='prompt'
+              placeholder='Enter the instructions...'
               onChange={handleChange}
               value={inputText}
             />
-            <button className="generate-btn mt-4" onClick={handleSubmit}>
+            <button className='generate-btn mt-4' onClick={handleSubmit}>
               Generate
             </button>
-            <div className="sample-prompts w-50">
+            <div className='sample-prompts w-50'>
               <Accordion defaultActiveKey={null}>
-                <Accordion.Item eventKey="0">
+                <Accordion.Item eventKey='0'>
                   <Accordion.Header>Sample Exchange Prompt</Accordion.Header>
                   <Accordion.Body>
-                    <div className="iconsss">
+                    <div className='iconsss'>
                       <div
-                        className="upward-icon"
+                        className='upward-icon'
                         onClick={() => handleOnClick(content1)}
                         style={{ color: iconColor }}
                       >
                         <FaArrowCircleUp size={25} />
                       </div>
-                      <div className="content-1">{content1}</div>
+                      <div className='content-1'>{content1}</div>
                     </div>
                   </Accordion.Body>
                 </Accordion.Item>
-                <Accordion.Item eventKey="1">
+                <Accordion.Item eventKey='1'>
                   <Accordion.Header>Sample NFT Prompt</Accordion.Header>
                   <Accordion.Body>
-                    <div className="iconsss">
+                    {/* <div className='iconsss'>
                       <div
-                        className="upward-icon"
+                        className='upward-icon'
                         onClick={() => handleOnClick(content2)}
                       >
-                         <FaArrowCircleUp size={25} 
-                          style={{ color: iconColor }}/>
+                        <FaArrowCircleUp
+                          size={25}
+                          style={{ color: iconColor }}
+                        />
                       </div>
-                      <div className="conetent-1">{content2}</div>
-                    </div>
+                      <div className='content-1'>{content2}</div>
+                    </div> */}
                   </Accordion.Body>
                 </Accordion.Item>
               </Accordion>

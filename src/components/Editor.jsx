@@ -24,6 +24,8 @@ import {
 } from "ckeditor5";
 import "ckeditor5/ckeditor5.css";
 
+import useDrivePicker from "react-google-drive-picker";
+
 // eslint-disable-next-line react/prop-types
 const Editor = ({ message }) => {
   const editorRef = useRef(null);
@@ -32,8 +34,8 @@ const Editor = ({ message }) => {
     message || localStorage.getItem("editorData") || ""
   );
   const [isButtonDisabled, setIsButtonDisabled] = useState("true");
+  const [openPicker, authResponse] = useDrivePicker();
 
-  // Function to export target-content as a multi-page PDF
   // const exportAsPDF = () => {
   //   const targetContent = document.getElementById("target-content");
 
@@ -73,6 +75,29 @@ const Editor = ({ message }) => {
 
   const sendingData = () => {
     console.log(editorData);
+  };
+
+  const SCOPES = "https://www.googleapis.com/auth/drive.file";
+
+  // const customViewsArray = [new google.picker.DocsView()]; // custom view
+  const handleOpenPicker = () => {
+    openPicker({
+      clientId: import.meta.env.VITE_CLIENT_ID,
+      developerKey: import.meta.env.VITE_API_KEY,
+      viewId: "DOCS",
+      // token: token, // pass oauth token in case you already have one
+      showUploadView: true,
+      showUploadFolders: true,
+      supportDrives: true,
+      multiselect: true,
+      // customViews: customViewsArray, // custom view
+      callbackFunction: (data) => {
+        if (data.action === "cancel") {
+          console.log("User clicked cancel/close button");
+        }
+        console.log(data);
+      },
+    });
   };
 
   useEffect(() => {
@@ -133,11 +158,24 @@ const Editor = ({ message }) => {
               <button
                 onClick={sendingData}
                 className={
-                  isButtonDisabled ? "export-btn-disabled" : "export-btn"
+                  isButtonDisabled
+                    ? "export-btn-disabled me-2"
+                    : "export-btn me-2"
                 }
                 disabled={isButtonDisabled}
               >
                 Export to PDF
+              </button>
+              <button
+                onClick={() => handleOpenPicker()}
+                className={
+                  isButtonDisabled
+                    ? "export-btn-disabled   ms-2"
+                    : "export-btn ms-2 "
+                }
+                disabled={isButtonDisabled}
+              >
+                Upload to Drive
               </button>
             </div>
           </div>
