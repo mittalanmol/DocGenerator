@@ -1,14 +1,5 @@
-/* .editor-container-left{
-    height:600px;
-    border: 2px solid #bdbdbd;
-    border-radius: 8px;
-}
-.editor-container-right{
-    height:600px;
-    /* width:200px */
-
 .editor-container-left {
-  height: 600px;
+  height: 570px;
   border: 2px solid #bdbdbd;
   /* border-radius: 8px; */
   overflow: auto; /* Allow scrolling if content overflows */
@@ -22,7 +13,7 @@
   box-shadow: 0 0 5px #bdbdbd; /* Shadow effect */
 
   /* overflow: auto;  */
-  overflow-wrap: break-word; /* For modern browsers */
+  /* overflow-wrap: break-word; For modern browsers */
   padding: 40px; /* Add some padding for aesthetics */
 }
 
@@ -47,16 +38,6 @@ h6,
 ul,
 ol,
 table {
-  page-break-inside: avoid;
-}
-
-/* Create more natural page breaks */
-.editor-container-right {
-  margin: none;
-}
-
-.editor-container-right * {
-  break-inside: avoid;
   page-break-inside: avoid;
 }
 
@@ -122,4 +103,43 @@ ck .ck-editor__nested-editable.ck-editor__nested-editable_focused,
   padding: 10px 0 5px 15px;
   /* border-left: 5px solid #3498db; */
   color: #333;
+}
+
+.fixed-top {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.divsHeading {
+  position: fixed;
+  z-index: 100;
+  background-color: white;
+  width: 100%;
+}
+
+.editor-container-left {
+  position: sticky;
+  top: 125px; /* Adjust based on button height and margin */
+}
+
+.editor-container-right {
+  /* position: sticky; */
+  margin-top: 54px; /* Adjust based on button height and margin */
+  /* max-height: calc(100vh - 120px); Full screen minus button and margin */
+  /* overflow-y: auto; */
+  border: 1px solid #ddd;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.export-btn,
+.export-btn-disabled {
+  padding: 10px 20px;
+}
+
+.export-btn-disabled {
+  background-color: #ccc; 
+  cursor: not-allowed;
 }

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Dashboard = () => {
   return (
     <div>
-      <div className="container d-flex justify-content-center align-items-center vh-100">
+      <div className='container d-flex justify-content-center align-items-center vh-100'>
         <div
           className='card shadow-sm text-center'
           style={{ minHeight: "250px", width: "270px", borderRadius: "12px" }}
@@ -11,7 +11,7 @@ const Dashboard = () => {
           <div className='card-header  text-dark fs-4 fw-bold'>SOW</div>
           <div className='card-body d-flex flex-column'>
             <span className='mt-3 mb-5'>
-              Generate the desired text within seconds
+              Generate the desired proposal within seconds
             </span>
             <Link to='/proposalmaker' className='mt-auto'>
               <button className='btn btn-outline-primary w-100  '>
