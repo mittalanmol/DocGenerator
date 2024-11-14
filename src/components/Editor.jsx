@@ -260,9 +260,9 @@ const Editor = ({ message }) => {
                 className={
                   isButtonDisabled
                     ? "export-btn-disabled me-2"
-                    : "export-btn me-2"
+                    : "export-btn-disabled me-2 "
                 }
-                disabled={isButtonDisabled}
+                disabled
               >
                 Export to PDF
               </button>
